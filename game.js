@@ -1,5 +1,6 @@
-let ball;
 let canvas;
+let ball;
+let paddleOne;
 
 function setup() {
   canvas = createCanvas(900, 600);
@@ -9,6 +10,7 @@ function setup() {
   textAlign(CENTER);
   textFont('Verdana');
   ball = new Ball();
+  paddleOne = new Paddle('playerOne');
 }
 
 function draw() {
@@ -16,6 +18,7 @@ function draw() {
   drawCourt();
   runGame();
   ball.run();
+  paddleOne.run();
 }
 
 function drawCourt() {
@@ -26,6 +29,12 @@ function drawCourt() {
   noFill();
   circle(canvas.width / 2, canvas.height / 2, 100);
   noStroke();
+}
+
+function mouseMoved() {
+  if (mouseY < height - paddleOne.height / 2 && mouseY > 0 + paddleOne.height / 2) {
+    paddleOne.playerMove();
+  }
 }
 
 function runGame() {

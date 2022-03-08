@@ -26,7 +26,13 @@ class Ball {
   checkBounds() {
     if (this.location.y < 0 + this.size / 2 || this.location.y > canvas.height - this.size / 2)
       this.velocity.y *= -1;
-    if (this.location.x < 0 + this.size / 2 || this.location.x > canvas.width - this.size / 2)
+    if (this.location.x > canvas.width - this.size / 2)
+      this.velocity.x *= -1;
+  }
+
+  checkColiision(paddle) {
+    let paddleBallX = paddle.location.x + paddle.width;
+    if (paddleBallX === this.location.x && paddle.location.y - this.location.y > -paddle.height / 2 && paddle.location.y - this.location.y < paddle.height / 2)
       this.velocity.x *= -1;
   }
 }

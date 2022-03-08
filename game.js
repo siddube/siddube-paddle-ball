@@ -18,6 +18,7 @@ function draw() {
   drawCourt();
   runGame();
   ball.run();
+  ball.checkColiision(paddleOne);
   paddleOne.run();
 }
 

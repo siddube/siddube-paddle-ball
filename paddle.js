@@ -27,4 +27,13 @@ class Paddle {
   playerMove() {
     this.location.y = mouseY;
   }
+
+  aiMove(ball) {
+    if (ball.location.x > canvas.width / 2 - this.aiMoveBallX) {
+      if (this.location.y - ball.location.y > 0 && this.location.y < canvas.height)
+        this.location.add(0, -this.aiSpeedY);
+      else if (this.location.y - ball.location.y < 0 && this.location.y > 0)
+        this.location.add(0, this.aiSpeedY);
+    }
+  }
 }

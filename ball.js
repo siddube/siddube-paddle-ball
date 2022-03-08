@@ -10,7 +10,7 @@ class Ball {
   run() {
     this.draw();
     this.move();
-    this.checkBounds();
+    this.checkVerticalBounds();
   }
 
   draw() {
@@ -23,15 +23,18 @@ class Ball {
       this.location.add(this.velocity);
   }
 
-  checkBounds() {
+  checkVerticalBounds() {
     if (this.location.y < 0 + this.size / 2 || this.location.y > canvas.height - this.size / 2)
       this.velocity.y *= -1;
-    if (this.location.x > canvas.width - this.size / 2)
-      this.velocity.x *= -1;
   }
 
   checkColiision(paddle) {
-    let paddleBallX = paddle.location.x + paddle.width;
+    let paddleBallX;
+    if (paddle.playerType === 'playerOne')
+      paddleBallX = paddle.location.x + paddle.width;
+    else
+      paddleBallX = paddle.location.x - paddle.width;
+
     if (paddleBallX === this.location.x && paddle.location.y - this.location.y > -paddle.height / 2 && paddle.location.y - this.location.y < paddle.height / 2)
       this.velocity.x *= -1;
   }

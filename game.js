@@ -1,6 +1,7 @@
 let canvas;
 let ball;
 let paddleOne;
+let paddleTwo;
 
 function setup() {
   canvas = createCanvas(900, 600);
@@ -11,6 +12,7 @@ function setup() {
   textFont('Verdana');
   ball = new Ball();
   paddleOne = new Paddle('playerOne');
+  paddleTwo = new Paddle('computer');
 }
 
 function draw() {
@@ -19,7 +21,10 @@ function draw() {
   runGame();
   ball.run();
   ball.checkColiision(paddleOne);
+  ball.checkColiision(paddleTwo);
   paddleOne.run();
+  paddleTwo.run();
+  paddleTwo.aiMove(ball);
 }
 
 function drawCourt() {
